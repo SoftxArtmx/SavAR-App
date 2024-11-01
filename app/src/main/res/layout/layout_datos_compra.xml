@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <!-- Primera fila con Dato 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewDato1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:text="Dato 1:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewValor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E4FBFF"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Valor 1"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Segunda fila con Dato 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewDato2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:text="Dato 2:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewValor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E4FBFF"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Valor 2"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Tercera fila con Dato 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textViewDato3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_weight="1"
+            android:text="Dato 3:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewValor3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#E4FBFF"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Valor 3"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Botón al final alineado a la derecha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/boton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B2DDA8"
+            android:text="Ver lista"
+            android:textColor="@color/black"
+            android:textColorLink="#B2DDA8"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp">
+    </LinearLayout>
+</LinearLayout>

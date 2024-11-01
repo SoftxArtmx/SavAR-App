@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/cartvector"
+        android:title="Carrito" />
+    <item
+        android:id="@+id/nav_camera"
+        android:icon="@drawable/cameravector"
+        android:title="Cámara" />
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/gestorvector"
+        android:title="Presupuesto" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/historialvector"
+        android:title="Historial" />
+</menu>
