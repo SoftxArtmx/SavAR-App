@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         // Establecer el fragmento de inicio (Inicio) cuando se inicie la aplicación
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new CartFragment())
+                    .replace(R.id.fragment_container, new InicioFragment())
                     .commit();
         }
     }
