@@ -57,7 +57,6 @@ public class VistaCompra extends LinearLayout {
         textViewValor2 = findViewById(R.id.textViewValor2);
         textViewDato3 = findViewById(R.id.textViewDato3);
         textViewValor3 = findViewById(R.id.textViewValor3);
-        boton = findViewById(R.id.boton);
     }
 
     // Método para asignar los valores de los datos

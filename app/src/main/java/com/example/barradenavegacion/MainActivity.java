@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_dashboard) {
                 selectedFragment = new MeterFragment();
             } else if (itemId == R.id.nav_profile) {
-                selectedFragment = new UserFragment();
+                selectedFragment = new HistorialFragment();
             }
 
             // Reemplazar el contenedor de fragmentos con el fragmento seleccionado

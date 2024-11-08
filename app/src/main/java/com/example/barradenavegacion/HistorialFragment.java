@@ -40,13 +40,6 @@ public class HistorialFragment extends Fragment {
         for ( int i = 0; i < 10 ; i++ ) {
             vistaCompra = new VistaCompra(getActivity());
             vistaCompra.setDatos("Total:", String.format("$%d", i), "Tienda:", "Soriana Doe", "Fecha", "00 sep 2024");
-            vistaCompra.setBotonListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Acción del botón para vista1
-                }
-            });
-
             LinearLayout layout = view.findViewById(R.id.linearLayoutCompras);
             layout.addView(vistaCompra);
         }
