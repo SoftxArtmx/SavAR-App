@@ -1,12 +1,8 @@
 package com.example.barradenavegacion;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -22,9 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_main_login);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             // Si no tiene permiso, solicitarlo
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestCameraPermission();
-            }
+            requestCameraPermission();
         }
         // Cargar LoginFragment al iniciar la actividad
         if (savedInstanceState == null) {
@@ -34,11 +28,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
     private void requestCameraPermission() {
-        // Solicitar permiso de cámara
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERMISSION_REQUEST_CODE);
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

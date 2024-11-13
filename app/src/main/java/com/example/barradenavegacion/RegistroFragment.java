@@ -1,5 +1,6 @@
 package com.example.barradenavegacion;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -128,7 +129,15 @@ public class RegistroFragment extends Fragment {
         registerButton.setBackgroundColor(Color.parseColor("#0B4F6C"));
         registerButton.setTextColor(ContextCompat.getColor(requireContext(), R.color.white));
         registerButton.setTextSize(18);
-        registerButton.setOnClickListener(v -> registerUser());
+        //registerButton.setOnClickListener(v -> registerUser());
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(requireActivity(), MainActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            }
+        });
         layout.addView(registerButton);
 
         scrollView.addView(layout);
