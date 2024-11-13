@@ -8,6 +8,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.barradenavegacion.R;
+
 import java.util.ArrayList;
 
 public class MiListaAdapter extends RecyclerView.Adapter<MiListaAdapter.ViewHolder> {

@@ -30,7 +30,7 @@ public class CartFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         recyclerMiLista = view.findViewById(R.id.recyclerMiLista);
         fabAgregar = view.findViewById(R.id.fabAgregar);
@@ -41,7 +41,7 @@ public class CartFragment extends Fragment {
 
         // Inicializar el adaptador
         miListaAdapter = new MiListaAdapter(getActivity(), listaItems, carritoItems);
-        recyclerMiLista.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerMiLista.setLayoutManager(new LinearLayoutManager(requireActivity()));
         recyclerMiLista.setAdapter(miListaAdapter);
 
         // Configurar el botón para agregar ítems
