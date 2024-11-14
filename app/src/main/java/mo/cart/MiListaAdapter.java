@@ -1,6 +1,7 @@
 package mo.cart;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +18,14 @@ public class MiListaAdapter extends RecyclerView.Adapter<MiListaAdapter.ViewHold
 
     private final ArrayList<String> listaItems;
     private final ArrayList<String> carritoItems;
+    private final boolean esCarrito; // Variable para identificar si es la lista del carrito
     private final Context context;
 
-    public MiListaAdapter(Context context, ArrayList<String> listaItems, ArrayList<String> carritoItems) {
+    public MiListaAdapter(Context context, ArrayList<String> listaItems, ArrayList<String> carritoItems, boolean esCarrito) {
         this.context = context;
         this.listaItems = listaItems;
         this.carritoItems = carritoItems;
+        this.esCarrito = esCarrito; // Inicializar la variable
     }
 
     @NonNull
@@ -34,26 +37,31 @@ public class MiListaAdapter extends RecyclerView.Adapter<MiListaAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String item = listaItems.get(position);
+        String item = esCarrito ? carritoItems.get(position) : listaItems.get(position);
         holder.tvItem.setText(item);
-        holder.checkBox.setOnCheckedChangeListener(null); // Para evitar problemas de referencia
-        holder.checkBox.setChecked(carritoItems.contains(item)); // Marcar el checkbox si el ítem está en el carrito
 
-        // Manejar el evento de cambio de estado del checkbox
-        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                if (!carritoItems.contains(item)) {
-                    carritoItems.add(item); // Agregar al carrito
+        // Configuración del checkbox y tachado de texto solo para "Mi lista"
+        if (!esCarrito) {
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setOnCheckedChangeListener(null); // Para evitar problemas de referencia
+            holder.checkBox.setChecked(false); // Inicialmente sin marcar
+
+            // Configurar comportamiento del checkbox y tachado de texto
+            holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                if (isChecked) {
+                    holder.tvItem.setPaintFlags(holder.tvItem.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG); // Tachar texto
+                } else {
+                    holder.tvItem.setPaintFlags(holder.tvItem.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG); // Quitar tachado
                 }
-            } else {
-                carritoItems.remove(item); // Remover del carrito
-            }
-        });
+            });
+        } else {
+            holder.checkBox.setVisibility(View.GONE); // Ocultar checkbox en el carrito
+        }
     }
 
     @Override
     public int getItemCount() {
-        return listaItems.size();
+        return esCarrito ? carritoItems.size() : listaItems.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -62,8 +70,8 @@ public class MiListaAdapter extends RecyclerView.Adapter<MiListaAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvItem = itemView.findViewById(R.id.tvItem); // Asegúrate de que este ID coincida con tu layout de ítem
-            checkBox = itemView.findViewById(R.id.checkBox); // Asegúrate de que este ID coincida con tu layout de ítem
+            tvItem = itemView.findViewById(R.id.tvItem);
+            checkBox = itemView.findViewById(R.id.checkBox);
         }
     }
 }

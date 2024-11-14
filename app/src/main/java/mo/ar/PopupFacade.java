@@ -1,3 +1,29 @@
+/*
+ * |                             S O F T x A R T
+ * | Proyecto: SaVR
+ * | Archivo: PopupFacade
+ * | Clase/modulo a codificar: MO.AR.PopupFacade
+ * | Descripción general: Gestión de la interfaz emergente (popup) para mostrar la información
+ * |                     del producto escaneado y opciones de confirmación.
+ * | Funciones especificas:
+ * |   - Configuración y visualización del popup para la información del producto escaneado.
+ * |   - Llamada a la API para obtener datos detallados del producto.
+ * |   - Actualización de los campos del popup con el nombre, marca, tipo, tamaño e imagen del producto.
+ * |   - Configuración de acciones en botones para confirmar o reescanear el producto.
+ * |   - Manejo de cantidad seleccionada en el popup.
+ * |
+ * | Desarrollador encargado: Leonardo Zavala González
+ * | Aprobado por: Marcos Emmanuel Juarez Navarro
+ * |
+ * | CAMBIOS REALIZADOS DESDE LA ULTIMA VERSION
+ * | Nombre:        Fecha:               Cambios Realizados:
+ * | LZG            23/10/24             Creacion de la clase e inicio de la implementacion
+ * | LZG            29/10/24             Finalización de implementación la clase.
+ * | LZG            12/11/24             Ajustes de la clase para integrar los elementos escanados en el modulo de CartFragment.
+ * |
+ * |
+ * */
+
 package mo.ar;
 
 import android.app.AlertDialog;
@@ -14,7 +40,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.barradenavegacion.MainActivity;
 import com.example.barradenavegacion.R;
 
 import retrofit2.Call;
@@ -26,6 +51,7 @@ public class PopupFacade {
     private Context context;
     private FrameLayout blurBackground;
     private static final String TAG = "PopupFacade";
+    private String productInfo; // Almacena temporalmente la información del producto
 
     public PopupFacade(Context context, FrameLayout blurBackground) {
         this.context = context;
@@ -37,7 +63,7 @@ public class PopupFacade {
         builder.setTitle(message);
 
         // Custom View para el popup
-        ScrollView layout = (ScrollView) ((MainActivity) context).getLayoutInflater().inflate(R.layout.popup_layout, null);
+        ScrollView layout = (ScrollView) View.inflate(context, R.layout.popup_layout, null);
         TextView productName = layout.findViewById(R.id.product_name);
         TextView productBrand = layout.findViewById(R.id.product_brand_label);
         TextView productType = layout.findViewById(R.id.product_type_label);
@@ -74,6 +100,12 @@ public class PopupFacade {
             dialog.dismiss();
             Toast.makeText(context, "Producto confirmado", Toast.LENGTH_SHORT).show();
             blurBackground.setVisibility(View.GONE);
+
+            // Agregar el producto solo al presionar confirmar
+            if (productInfo != null) {
+                ConexionARCamara.getInstance().agregarProducto(productInfo);
+                Log.d(TAG, "Producto confirmado y agregado al carrito: " + productInfo);
+            }
             onConfirm.run();
         });
 
@@ -98,6 +130,9 @@ public class PopupFacade {
                     tipo.setText("Tipo: " + producto.getTipo());
                     tamano.setText("Tamaño: " + producto.getQtyunit() + " " + producto.getTipUnit());
 
+                    // Preparar la información del producto para el carrito
+                    productInfo = producto.getNombre() + " " + producto.getMarca() + " " + producto.getQtyunit() + "pz " + producto.getTipUnit();
+
                     // Cargar la imagen desde el enlace usando Glide
                     String enlaceNube = producto.getEnlace_nube();
                     Glide.with(context)
@@ -118,3 +153,4 @@ public class PopupFacade {
         });
     }
 }
+
