@@ -1,6 +1,8 @@
 package com.example.barradenavegacion;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -123,9 +126,10 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
+//                Intent intent = new Intent(requireActivity(), MainActivity.class);
+//                startActivity(intent);
+//                requireActivity().finish();
+                loginUser();
             }
         });
         layout.addView(loginButton);
@@ -162,7 +166,19 @@ public class LoginFragment extends Fragment {
                     String status = response.body().getStatus();
                     User user = response.body().getUser();
                     Toast.makeText(requireContext(), "Bienvenido " + user.getNombre(), Toast.LENGTH_SHORT).show();
-                    // Procesa los datos de 'user' o navega a la siguiente pantalla
+
+                    // Llamada a la API para verificar las credenciales
+                    // Si la respuesta es exitosa:
+                    SharedPreferences preferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("isLoggedIn", true); // Establece que el usuario está logueado
+                    editor.putString("username", username); // Guardar el nombre de usuario (opcional)
+                    editor.apply();
+
+                    // Redirigir a MainActivity después de iniciar sesión correctamente
+                    Intent intent = new Intent(requireActivity(), MainActivity.class);
+                    startActivity(intent);
+                    requireActivity().finish(); // Cerrar LoginActivity para que no puedan regresar
                 } else {
                     Toast.makeText(requireContext(), "Inicio de sesión fallido: " + response.message(), Toast.LENGTH_SHORT).show();
                 }

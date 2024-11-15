@@ -179,6 +179,16 @@ public class RegistroFragment extends Fragment {
                 public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
                     if (response.isSuccessful() && response.body() != null) {
                         Toast.makeText(requireContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        // Manejar la respuesta de inicio de sesión exitosa
+                        String message = response.body().getMessage();
+                        String status = response.body().getStatus();
+                        User user = response.body().getUser();
+                        Toast.makeText(requireContext(), "Bienvenido " + user.getNombre(), Toast.LENGTH_SHORT).show();
+
+                        // Redirigir a MainActivity después de iniciar sesión correctamente
+                        Intent intent = new Intent(requireActivity(), MainActivity.class);
+                        startActivity(intent);
+                        requireActivity().finish(); // Cerrar LoginActivity para que no puedan regresar
                     } else {
                         Toast.makeText(requireContext(), "Error en el registro", Toast.LENGTH_SHORT).show();
                     }
