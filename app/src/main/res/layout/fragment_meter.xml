@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MeterFragment">
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="190dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Logo de la aplicación"
+        android:src="@drawable/logo_savar" />
+
+    <ImageView
+        android:id="@+id/meterIcon"
+        android:layout_width="255dp"
+        android:layout_height="225dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="Icono de medidor"
+        android:src="@drawable/meter" />
+
+    <!-- Texto "Ingresa tu presupuesto" -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/instructionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresa tu presupuesto"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textColor="#000" />
 
-</FrameLayout>
+    <!-- Campo para ingresar el presupuesto -->
+    <EditText
+        android:id="@+id/budgetInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:hint="$ 0.00"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:backgroundTint="#E0F7FA"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:ems="10" />
+
+    <!-- Botón de guardar -->
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#B3E5FC" />
+
+    <!-- Mensaje de estado (inicialmente oculto) -->
+    <TextView
+        android:id="@+id/statusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parece que todo va bien por aquí!"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="#000"
+        android:visibility="gone" />  <!-- Oculto inicialmente -->
+
+</LinearLayout>
