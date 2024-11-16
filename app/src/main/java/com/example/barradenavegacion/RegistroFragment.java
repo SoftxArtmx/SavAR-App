@@ -1,6 +1,8 @@
 package com.example.barradenavegacion;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
@@ -133,9 +135,7 @@ public class RegistroFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(requireActivity(), MainActivity.class);
-                startActivity(intent);
-                requireActivity().finish();
+                registerUser();
             }
         });
         layout.addView(registerButton);
@@ -184,7 +184,13 @@ public class RegistroFragment extends Fragment {
                         String status = response.body().getStatus();
                         User user = response.body().getUser();
                         Toast.makeText(requireContext(), "Bienvenido " + user.getNombre(), Toast.LENGTH_SHORT).show();
-
+                        // Guardamos el dato del usuario registrado
+                        SharedPreferences preferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putBoolean("isLoggedIn", true); // Establece que el usuario está logueado
+                        editor.putString("username", username); // Guardar el nombre de usuario (opcional)
+                        editor.putString("name", nombre);
+                        editor.apply();
                         // Redirigir a MainActivity después de iniciar sesión correctamente
                         Intent intent = new Intent(requireActivity(), MainActivity.class);
                         startActivity(intent);
