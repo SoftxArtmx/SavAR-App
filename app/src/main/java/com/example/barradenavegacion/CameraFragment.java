@@ -1,3 +1,28 @@
+/*
+ * |                             S O F T x A R T
+ * | Proyecto: SaVR
+ * | Archivo: cameraFragment
+ * | Clase/modulo a codificar: MO_AR
+ * | Descripción general: Manejo e implementacion del modulo de camara.
+ * | Funciones especificas:
+ * |   -Escaneo del codigo de barras
+ * |   -Mandar a la base de datos el codigo escaneado.
+ * |   -Mostrar la información relevante del producto.
+ * |   -Facilitar al usuario agregar productos al carrito.
+ * |
+ * | Desarrollador encargado: Leonardo Zavala González
+ * | Aprobado por: Marcos Emmanuel Juarez Navarro
+ * |
+ * | CAMBIOS REALIZADOS DESDE LA ULTIMA VERSION
+ * | Nombre:        Fecha:               Cambios Realizados:
+ * | LZG            23/10/24             Comencé a pasar mi modulo al patron de diseño de Facade.
+ * | LZG            29/10/24             Terminé de implementar el patrón de diseño de Facade.
+ * | GC             02/10/24             Implementación de la BD y las clases referentes a la API.
+ * | MJN            08/10/24             Implementar el modulo de camara en la aplicación principal.
+ * |
+ * |
+ * |
+ * */
 package com.example.barradenavegacion;
 
 import android.app.Activity;
